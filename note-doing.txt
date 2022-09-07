@@ -1,0 +1,12 @@
+1. Thiết lập ban đầu:
+- Tạo project: ng new todo-mvc-angular chọn N routing
+- Cài thêm: npm install bootstrap eva-icons
+- Vào angular.json, thêm node_modules/eva-icons/eva.min.js vào mục script, điều này tương tự như gán script trong index.html, nhưng lợi hơn là sẽ được build ngay khi angular cli build app
+- Vào styles.scss: đây là global style của ứng dụng:
+    + Lưu ý cài bản "bootstrap": "^4.1.3"
+
+2. Xây dựng cấu trúc
+- TodoService chứa:
+    + Các biến private chỉ sử dụng trong TodoService
+    + Các biến public cho phép các component ngoài tham chiếu đến
+    
