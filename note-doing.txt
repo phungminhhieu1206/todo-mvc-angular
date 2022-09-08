@@ -9,4 +9,33 @@
 - TodoService chứa:
     + Các biến private chỉ sử dụng trong TodoService
     + Các biến public cho phép các component ngoài tham chiếu đến
-    
+
+- Tạo component: ng g c --skip-tests=true components/todo-list | todo-item | todo-input | header | footer
+    + Tư tưởng là: Khi vào 1 page, tạo luôn các components cho page đó theo sự phân chia đã định trước !
+- Tạo service
+    + service chung: ng g s --skip-tests=true services/todo
+    + local-storage service: ng g s --skip-tests=true local-storage
+=> Angular cli thực hiện tạo các components và service đồng thời update import chúng vào app-modules
+- Tạo models: Nơi chứa các khai báo thuộc tính cho đối tượng component trong ứng dụng
+
+3. Code-part-1
+- Thực hiện định nghĩa các model trước ! (todo.model.ts, filtering.model.ts)
+- Thực hiện cấu hình local-storage.service trước ! todo.service cấu hình theo chức năng khi component cần (local-storage có thể sử dụng cho nhiều project khác)
+- Quy trình: Cấu hình các components (html+css) sau đó ghép tương tác giữa chúng thông qua service hoặc @Input @Output
+    + AppComponent hay những ComponentPage chung, tư tưởng là style khung trước, sau đó nhúng các component html tag vào vị trí đã định sau, để lên lần lượt giao diện
+    + 1 component page lớn --> bắt đầu hình dung phân tách thành những component nhỏ. lập tức chia thành các components nhỏ, mỗi cái là một ng g c components/itemcomponent...
+        * Trong mỗi component thành phần cần cấu hình: html của nó, css của nó
+        * Tiến hành style component từ trên xuống dưới, từ trái qua phải gồm: html + css cho component thành phần
+    + Cấu hình: app.component --> header.component(đây là header của phần todolist) --> todo-input.component --> footer.component
+
+4. Code-part-2
+- Tiếp tục style: todo-list + todo-item
+- Todo Item:
+    + Phân tích thấy rằng: 1 todo item cần quản lý 2 state:
+        * state 1: khi hover chuột vào hiện lên button (isHover)
+        * state 2: một state nhận biết khi nào đang edit để hiện ra form edit (isEdit)
+        => state hiểu theo nghĩa quyết định thay đổi giao diện components
+        => Còn các biến hiểu theo nghĩa chứa dữ liệu truyền đi khi thực hiện các methods event
+
+5. Code-part-3
+- Viết các hàm cho todo.service, cho phép components kết nối với service để nói chuyện với nhau
